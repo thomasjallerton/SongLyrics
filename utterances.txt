@@ -1,0 +1,4 @@
+GetLyrics for {Song}
+GetLyrics what lyrics of {Song} are
+GetLyrics what are lyrics for {Song}
+GetLyrics for {Song} lyrics

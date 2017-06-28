@@ -1,0 +1,13 @@
+{
+  "intents": [
+    {
+      "intent": "GetLyrics",
+      "slots": [
+        {
+          "name": "Song",
+          "type": "AMAZON.MusicRecording"
+        }
+      ]
+    }
+  ]
+}

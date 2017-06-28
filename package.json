@@ -1,0 +1,24 @@
+{
+  "name": "songlyrics",
+  "version": "1.0.0",
+  "description": "",
+  "main": "Lyrics.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thomasjallerton/SongLyrics.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/thomasjallerton/SongLyrics/issues"
+  },
+  "homepage": "https://github.com/thomasjallerton/SongLyrics#readme",
+  "dependencies": {
+    "alexa-sdk": "^1.0.10",
+    "http": "0.0.0",
+    "http-request": "^0.7.0"
+  }
+}
