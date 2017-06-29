@@ -1,4 +1,9 @@
 GetLyrics for {Song}
+GetLyrics of {Song}
 GetLyrics what lyrics of {Song} are
 GetLyrics what are lyrics for {Song}
-GetLyrics for {Song} lyrics
+
+GetLyricsWithArtist for {Song} by {artist}
+GetLyricsWithArtist of {Song} by {artist}
+GetLyricsWithArtist what lyrics of {Song} by {artist} are
+GetLyricsWithArtist what are lyrics for {Song} by {artist}

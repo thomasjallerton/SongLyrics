@@ -1,11 +1,24 @@
 {
   "intents": [
     {
-      "intent": "GetLyrics",
-      "slots": [
+      "intent":"GetLyrics",
+      "slots":[
         {
-          "name": "Song",
-          "type": "AMAZON.MusicRecording"
+          "name":"Song",
+          "type":"AMAZON.MusicRecording"
+        }
+      ]
+    },
+    {
+      "intent":"GetLyricsWithArtist",
+      "slots":[
+        {
+          "name":"Song",
+          "type":"AMAZON.MusicRecording"
+        },
+        {
+          "name":"artist",
+          "type":"AMAZON.Artist"
         }
       ]
     }

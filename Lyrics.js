@@ -21,10 +21,19 @@ const handlers = {
       emitter.emit(':tell', "Lyrics of " + song + " by " + artist + ":, " + lyrics);
     });
   },
+  'GetLyricsWithArtist' : function () {
+    var song = this.event.request.intent.slots.Song.value;
+    var artist = this.event.request.intent.slots.artist.value;
+    console.log("Song: " + song + " Artist: " + artist);
+    getLyricsPage(song, artist, this, function (lyrics, artist, emitter) {
+      emitter.emit(':tell', "Lyrics of " + song + " by " + artist + ":, " + lyrics);
+    });
+  },
+  'LaunchRequest' : function () {
+    this.emit(':tell', "This is a skill to find the lyrics of a song");
+  },
   'AMAZON.HelpIntent': function () {
-    const speechOutput = this.t('HELP_MESSAGE');
-    const reprompt = this.t('HELP_MESSAGE');
-    this.emit(':ask', speechOutput, reprompt);
+    this.emit(':tell', "Ask me to find a lyric, for example say: Alexa ask lyric finder for Wonderwall by oasis");
   },
   'AMAZON.CancelIntent': function () {
     this.emit(':tell', this.t('STOP_MESSAGE'));
@@ -43,8 +52,16 @@ exports.handler = function (event, context) {
 };
 
 function getLyricsPage(title, artist, emitter, callback) {
-  title = "song:" + title.replace(/ /g, "+");
-  var query = artist !== null ? title + '+' + artist : title;
+  title = "song%3A" + title.replace(/ /g, "+");
+  var query;
+  if (artist !== null) {
+    artist = "artist%3A" + artist.replace(/ /g, "+");
+    query = title + '+' + artist;
+  } else {
+    query = title;
+  }
+
+  console.log(query);
   var url = {host: 'www.songtexte.com', path: '/search?q=' + query + '&c=all', connection:'keep-alive'};
   //console.log("URL: " + url.host + url.path);
   var request = http.get(url, function(response) {
@@ -56,7 +73,7 @@ function getLyricsPage(title, artist, emitter, callback) {
       //console.log(body);
       var songresult = body.split('class="song"><a href=\"')[1].split('\"')[0];
       var lyricurl = {host: 'www.songtexte.com', path: '/' + songresult, connection:'keep-alive'};
-      //console.log("Lyric Url: " + lyricurl.host + lyricurl.path);
+      console.log("Lyric Url: " + lyricurl.host + lyricurl.path);
       getLyrics(lyricurl, emitter, callback);
     });
   });
@@ -80,4 +97,4 @@ function getLyrics(lyricurl, emitter, callback) {
   });
 }
 
-//getLyricsPage('wonderwall', null, null, function () {});
+//getLyricsPage('Love Song', 'sara', null, function () {});
